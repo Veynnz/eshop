@@ -42,11 +42,12 @@ public class ProductRepository {
         return null; // Return null if product not found
     }
 
-    public void delete(String id) {
+    public Product delete(String id) {
         for (int i = 0; i < productData.size(); i++) {
             if (productData.get(i).getProductId().equals(id)) {
-                productData.remove(i);
+                return productData.remove(i);
             }
         }
+        return null;
     }
 }
