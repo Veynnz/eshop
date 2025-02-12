@@ -1,5 +1,8 @@
 # E-SHOP
 
+- [Reflection 1](#Reflection-1)
+- [Reflection 2](#Reflection-2)
+
 ## Reflection 1
 
 I was learning along the way, especially the process of web developing that is pretty different compared to Django, which was used on our PBP projects last semester.
