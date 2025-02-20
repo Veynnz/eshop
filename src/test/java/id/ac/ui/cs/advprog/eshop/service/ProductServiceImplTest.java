@@ -89,12 +89,12 @@ class ProductServiceImplTest {
 
     @Test
     void testDelete() {
-        when(productRepository.findById("1")).thenReturn(product1);
+        when(productRepository.delete("1")).thenReturn(product1); // Mock delete()
 
         Product deletedProduct = productService.delete("1");
 
-        assertEquals(product1, deletedProduct);
-        verify(productRepository, times(1)).findById("1");
+        assertEquals(product1, deletedProduct); // Assert the correct product
+        verify(productRepository, times(1)).delete("1"); // Verify delete() call
     }
 
     @Test
@@ -119,11 +119,11 @@ class ProductServiceImplTest {
 
     @Test
     void testDeleteNotFound() {
-        when(productRepository.findById("nonExistentId")).thenReturn(null);
+        when(productRepository.delete("nonExistentId")).thenReturn(null); // Mock delete()
 
         Product deletedProduct = productService.delete("nonExistentId");
 
         assertNull(deletedProduct);
-        verify(productRepository, times(1)).findById("nonExistentId");
+        verify(productRepository, times(1)).delete("nonExistentId"); // Verify delete() call
     }
 }
