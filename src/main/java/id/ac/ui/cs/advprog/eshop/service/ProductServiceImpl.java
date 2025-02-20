@@ -12,8 +12,12 @@ import java.util.List;
 @Service
 public class ProductServiceImpl implements ProductService {
 
+    private final ProductRepository productRepository; // Declare as final
+
     @Autowired
-    private ProductRepository productRepository;
+    public ProductServiceImpl(ProductRepository productRepository) { // Constructor injection
+        this.productRepository = productRepository;
+    }
 
     @Override
     public Product create(Product product) {
@@ -41,6 +45,6 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product delete(String id) {
-        return productRepository.findById(id);
+        return productRepository.findById(id); // Note: This should likely be productRepository.delete(id)
     }
 }
