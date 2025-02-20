@@ -14,7 +14,7 @@ import java.util.List;
 public class ProductController {
 
     private final ProductService service; // Declare as final
-    private static final String PRODUCT_LIST_URL = "/product/list";
+    private static final String PRODUCT_LIST_URL = "redirect:/product/list";
 
     @Autowired
     public ProductController(ProductService service) { // Constructor injection
