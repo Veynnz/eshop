@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/product")
 public class ProductController {
 
-    private final ProductService service; // Declare as final
+    private final ProductService service;
     private static final String PRODUCT_LIST_URL = "redirect:/product/list";
 
     @Autowired
