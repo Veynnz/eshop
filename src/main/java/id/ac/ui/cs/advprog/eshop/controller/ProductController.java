@@ -14,6 +14,7 @@ import java.util.List;
 public class ProductController {
 
     private final ProductService service; // Declare as final
+    private static final String PRODUCT_LIST_URL = "/product/list";
 
     @Autowired
     public ProductController(ProductService service) { // Constructor injection
@@ -44,7 +45,7 @@ public class ProductController {
     public String editProductPage(@PathVariable("id") String id, Model model) {
         Product product = service.findById(id);
         if (product == null) {
-            return "redirect:/product/list"; // Redirect if not found
+            return PRODUCT_LIST_URL; // Redirect if not found
         }
         model.addAttribute("product", product);
         return "editProduct";
@@ -53,12 +54,12 @@ public class ProductController {
     @PostMapping("/edit/{id}")
     public String editProductPost(@PathVariable("id") String id, @ModelAttribute Product product) {
         service.edit(id, product);
-        return "redirect:/product/list";
+        return PRODUCT_LIST_URL;
     }
 
     @GetMapping("/delete/{id}")
     public String deleteProduct(@PathVariable("id") String id) {
         service.delete(id);
-        return "redirect:/product/list";
+        return PRODUCT_LIST_URL;
     }
 }
