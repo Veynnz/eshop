@@ -13,8 +13,12 @@ import java.util.List;
 @RequestMapping("/product")
 public class ProductController {
 
+    private final ProductService service; // Declare as final
+
     @Autowired
-    private ProductService service;
+    public ProductController(ProductService service) { // Constructor injection
+        this.service = service;
+    }
 
     @GetMapping("/create")
     public String createProductPage(Model model) {
