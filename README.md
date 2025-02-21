@@ -61,7 +61,34 @@ Doing the exercise has helped me understand better about testing.
 # WEEK 2
 ## Reflection 3
 
-1. In total, there are 13 quality code issues that i fixed, which are:
-   - build.gradle.kts
-     - Fixed a group dependency quality issue, by reordering the dependency part to make it look clean.
-     - 
+1. In total, there are 10 quality code issues that i fixed, which are:
+   - `build.gradle.kts`
+     - Fixed a group dependency quality issue by reordering the dependency part based on their own groups to make it look clean.
+   - `ProductController.java`
+     - Changed field injection to constructor injection instead by declaring the `service` variable as a final and making the constructor for it.
+     - Avoid repeating the path "redirect:/product/list" by defining it as a variable.
+   - `ProductServiceImpl.java`
+     - Changed field injection to constructor injection instead by declaring the `productRepository` variable as a final and making the constructor for it.
+   - `EshopApplicationTests.java`
+     - Added a comment on the method `contextLoads` to explain why it is left empty.
+     - Added an assertion test in the method `mainMethodRunsWithoutError` to test that the application runs without error.
+   - `CreateProductFunctionalTest.java`
+     - Removed exception throwing from the methods, as it cannot be thrown from the methods` body.
+   - `HomePageFunctionalTest.java`
+     - Removed exception throwing from the methods, as it cannot be thrown from the methods` body.
+   - `ProductRepositoryTest.java`
+     - Removed the `setUp` method since it is not needed, because every test has their own set up.
+     - Removed importing the `BeforeEach` modifier since it is not used anymore. (It was previously used by the setUp method)
+
+2. **CI/CD IMPLEMENTATION**
+
+Currently my program has implemented:
+
+- Automated testing, which consits of running the unit tests, done by `ci.yml`.
+- Automated security analysis, particularly on supply chain security, done by `scorecard.yml`.
+- Automated quality issue analysis, done through the integration with SonarCloud.
+- Automated deployment, done through the integration with Koyeb.
+
+All of these are done automatically on push/pull request (except deployment that only triggers by a push in main branch).
+
+Since it met every requirements, the current implementation has met the definition of Continuous Integration and Continuous Deployment.
