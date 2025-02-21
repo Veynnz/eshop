@@ -27,6 +27,6 @@ class HomeControllerTest {
         String viewName = homeController.home();
 
         // Verify that the correct view name is returned
-        assertEquals("homepage", viewName);
+        assertEquals("Homepage", viewName);
     }
 }

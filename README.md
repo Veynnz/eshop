@@ -62,5 +62,6 @@ Doing the exercise has helped me understand better about testing.
 ## Reflection 3
 
 1. In total, there are 13 quality code issues that i fixed, which are:
-   - 
-
+   - build.gradle.kts
+     - Fixed a group dependency quality issue, by reordering the dependency part to make it look clean.
+     - 
