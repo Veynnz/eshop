@@ -1,8 +1,13 @@
 # E-SHOP
 
+WEEK 1
 - [Reflection 1](#Reflection-1)
 - [Reflection 2](#Reflection-2)
 
+WEEK 2
+- [Reflection 3](#Reflection-3)
+
+# WEEK 1
 ## Reflection 1
 
 I was learning along the way, especially the process of web developing that is pretty different compared to Django, which was used on our PBP projects last semester.
@@ -52,3 +57,10 @@ Doing the exercise has helped me understand better about testing.
      - Updating the URL would mean to update each functional test setup.
      
     A suggestion to improve the code cleanliness would be creating a new test class that handles the base setup for every functional test.
+
+# WEEK 2
+## Reflection 3
+
+1. In total, there are 13 quality code issues that i fixed, which are:
+   - 
+
