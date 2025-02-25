@@ -70,15 +70,10 @@ public class ProductController {
 
 @Controller
 @RequestMapping("/car")
-class CarController extends ProductController {
+class CarController {
 
     @Autowired
     public CarServiceImpl carservice;
-
-    // Need to call the parent constructor since ProductController was given one to follow the best practice
-    public CarController(ProductService service) {
-        super(service);
-    }
 
     @GetMapping("/createCar")
     public String createCarPage(Model model) {
