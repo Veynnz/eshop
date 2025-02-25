@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public class CarRepository {
+public class CarRepository implements CarRepositoryInterface {
     static int id = 0;
     private List<Car> carData = new ArrayList<>();
 
@@ -21,7 +21,7 @@ public class CarRepository {
         return car;
     }
 
-    public Iterator<Car> findAll(){
+    public Iterator<Car> findAll() {
         return carData.iterator();
     }
 
