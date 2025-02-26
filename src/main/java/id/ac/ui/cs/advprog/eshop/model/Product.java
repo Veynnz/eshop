@@ -4,8 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class Product {
-    private String productId;
-    private String productName;
-    private int productQuantity;
+public class Product extends BaseModel {
+    // Free to extend with any other attributes or methods
 }

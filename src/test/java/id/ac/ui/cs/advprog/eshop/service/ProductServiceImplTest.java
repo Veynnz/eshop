@@ -31,14 +31,14 @@ class ProductServiceImplTest {
     @BeforeEach
     void setUp() {
         product1 = new Product();
-        product1.setProductId("1");
-        product1.setProductName("Test Product 1");
-        product1.setProductQuantity(10);
+        product1.setId("1");
+        product1.setName("Test Product 1");
+        product1.setQuantity(10);
 
         product2 = new Product();
-        product2.setProductId("2");
-        product2.setProductName("Test Product 2");
-        product2.setProductQuantity(20);
+        product2.setId("2");
+        product2.setName("Test Product 2");
+        product2.setQuantity(20);
     }
 
     @Test
