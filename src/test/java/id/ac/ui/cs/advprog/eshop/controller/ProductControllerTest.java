@@ -26,6 +26,7 @@ class ProductControllerTest {
     @InjectMocks
     private ProductController controller;
 
+
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);

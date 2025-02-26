@@ -8,6 +8,7 @@ import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Iterator;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -24,10 +25,10 @@ class ProductRepositoryTest {
         product.setQuantity(100);
         Product createdProduct = productRepository.create(product);
 
-        Iterator<Product> productIterator = productRepository.findAll();
-        assertTrue(productIterator.hasNext());
-        Product savedProduct = productIterator.next();
-        assertEquals(createdProduct.getId(), savedProduct.getId());
+        List<Product> productList = productRepository.findAll();
+        assertFalse(productList.isEmpty());
+        Product savedProduct = productList.get(0);
+        assertEquals(product.getId(), savedProduct.getId());
         assertEquals(product.getName(), savedProduct.getName());
         assertEquals(product.getQuantity(), savedProduct.getQuantity());
     }
@@ -135,7 +136,7 @@ class ProductRepositoryTest {
         updatedProduct.setName("Sampo Cap Bango");
         updatedProduct.setQuantity(200);
 
-        Product result = productRepository.edit(productId, updatedProduct);
+        Product result = productRepository.update(productId, updatedProduct);
 
         assertNotNull(result);
         assertEquals(updatedProduct.getName(), result.getName());

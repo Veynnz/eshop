@@ -4,7 +4,7 @@ import id.ac.ui.cs.advprog.eshop.model.Product;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class ProductRepository extends AbstractRepository<Product> {
+public class ProductRepository extends AbstractFullRepository<Product> {
 
     @Override
     protected String getId(Product product) {

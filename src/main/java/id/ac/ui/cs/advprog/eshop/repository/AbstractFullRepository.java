@@ -3,10 +3,9 @@ package id.ac.ui.cs.advprog.eshop.repository;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
-public abstract class AbstractRepository<T> implements IRepository<T> {
+public abstract class AbstractFullRepository<T> implements IRepository<T>, IReadOnlyRepository<T> {
     protected List<T> data = new ArrayList<>();
 
     @Override
@@ -19,8 +18,8 @@ public abstract class AbstractRepository<T> implements IRepository<T> {
     }
 
     @Override
-    public Iterator<T> findAll() {
-        return data.iterator();
+    public List<T> findAll() {
+        return new ArrayList<>(data);
     }
 
     @Override

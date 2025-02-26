@@ -4,7 +4,7 @@ import id.ac.ui.cs.advprog.eshop.model.Car;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class CarRepository extends AbstractRepository<Car> {
+public class CarRepository extends AbstractFullRepository<Car> {
 
     @Override
     protected String getId(Car car) {
