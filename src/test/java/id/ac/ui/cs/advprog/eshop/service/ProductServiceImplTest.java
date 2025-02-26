@@ -57,8 +57,7 @@ class ProductServiceImplTest {
         productList.add(product1);
         productList.add(product2);
 
-        Iterator<Product> iterator = productList.iterator();
-        when(productRepository.findAll()).thenReturn(iterator);
+        when(productRepository.findAll()).thenReturn(productList);
 
         List<Product> foundProducts = productService.findAll();
 
@@ -79,12 +78,12 @@ class ProductServiceImplTest {
 
     @Test
     void testEdit() {
-        when(productRepository.edit("1", product1)).thenReturn(product1);
+        when(productRepository.update("1", product1)).thenReturn(product1);
 
         Product editedProduct = productService.edit("1", product1);
 
         assertEquals(product1, editedProduct);
-        verify(productRepository, times(1)).edit("1", product1);
+        verify(productRepository, times(1)).update("1", product1);
     }
 
     @Test
@@ -109,12 +108,12 @@ class ProductServiceImplTest {
 
     @Test
     void testEditNotFound() {
-        when(productRepository.edit("nonExistentId", product1)).thenReturn(null);
+        when(productRepository.update("nonExistentId", product1)).thenReturn(null);
 
         Product editedProduct = productService.edit("nonExistentId", product1);
 
         assertNull(editedProduct);
-        verify(productRepository, times(1)).edit("nonExistentId", product1);
+        verify(productRepository, times(1)).update("nonExistentId", product1);
     }
 
     @Test

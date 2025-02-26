@@ -98,8 +98,8 @@ class ProductRepositoryTest {
 
     @Test
     void testFindAllIfEmpty() {
-        Iterator<Product> productIterator = productRepository.findAll();
-        assertFalse(productIterator.hasNext());
+        List<Product> products = productRepository.findAll();
+        assertTrue(products.isEmpty());
     }
 
     @Test
@@ -114,13 +114,10 @@ class ProductRepositoryTest {
         product2.setQuantity(50);
         productRepository.create(product2);
 
-        Iterator<Product> productIterator = productRepository.findAll();
-        assertTrue(productIterator.hasNext());
-        Product savedProduct = productIterator.next();
-        assertEquals(product1.getId(), savedProduct.getId());
-        savedProduct = productIterator.next();
-        assertEquals(product2.getId(), savedProduct.getId());
-        assertFalse(productIterator.hasNext());
+        List<Product> productList = productRepository.findAll();
+        assertEquals(2, productList.size());
+        assertEquals(product1.getId(), productList.get(0).getId());
+        assertEquals(product2.getId(), productList.get(1).getId());
     }
 
     @Test
@@ -150,13 +147,13 @@ class ProductRepositoryTest {
         product.setQuantity(100);
         Product createdProduct = productRepository.create(product);
 
-        Iterator<Product> productIterator = productRepository.findAll();
-        assertTrue(productIterator.hasNext());
+        List<Product> products = productRepository.findAll();
+        assertFalse(products.isEmpty());
 
         Product deletedProduct = productRepository.delete(createdProduct.getId());
         assertEquals(createdProduct.getId(), deletedProduct.getId());
 
-        productIterator = productRepository.findAll();
-        assertFalse(productIterator.hasNext());
+        List<Product> emptyProducts = productRepository.findAll();
+        assertTrue(emptyProducts.isEmpty());
     }
 }

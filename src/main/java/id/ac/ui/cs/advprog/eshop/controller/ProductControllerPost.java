@@ -7,19 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.AbstractController;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/product")
-public class ProductController {
+public class ProductControllerPost {
 
     private final ProductService service;
     private static final String PRODUCT_LIST_URL = "redirect:/product/list";
 
     @Autowired
-    public ProductController(ProductService service) { // Constructor injection
+    public ProductControllerPost(ProductService service) { // Constructor injection
         this.service = service;
     }
 

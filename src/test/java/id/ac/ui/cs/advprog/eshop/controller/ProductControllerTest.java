@@ -2,6 +2,7 @@ package id.ac.ui.cs.advprog.eshop.controller;
 
 import id.ac.ui.cs.advprog.eshop.model.Product;
 import id.ac.ui.cs.advprog.eshop.service.ProductService;
+import id.ac.ui.cs.advprog.eshop.service.ReadOnlyProductService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -18,13 +19,17 @@ import static org.mockito.Mockito.*;
 class ProductControllerTest {
 
     @Mock
-    private ProductService service;
+    private ProductService servicePost;
+    @Mock
+    private ReadOnlyProductService serviceGet;
 
     @Mock
     private Model model;
 
     @InjectMocks
-    private ProductController controller;
+    private ProductControllerPost controllerPost;
+    @InjectMocks
+    private ProductControllerGet controllerGet;
 
 
     @BeforeEach
@@ -34,7 +39,7 @@ class ProductControllerTest {
 
     @Test
     void testCreateProductPage() {
-        String viewName = controller.createProductPage(model);
+        String viewName = controllerGet.createProductPage(model);
         assertEquals("CreateProduct", viewName);
         verify(model).addAttribute(eq("product"), any(Product.class));
     }
@@ -42,17 +47,17 @@ class ProductControllerTest {
     @Test
     void testCreateProductPost() {
         Product product = new Product();
-        String viewName = controller.createProductPost(product, model);
+        String viewName = controllerPost.createProductPost(product, model);
         assertEquals("redirect:list", viewName);
-        verify(service).create(product);
+        verify(servicePost).create(product);
     }
 
     @Test
     void testProductListPage() {
         List<Product> productList = Arrays.asList(new Product(), new Product());
-        when(service.findAll()).thenReturn(productList);
+        when(serviceGet.findAll()).thenReturn(productList);
 
-        String viewName = controller.productListPage(model);
+        String viewName = controllerGet.productListPage(model);
         assertEquals("ProductList", viewName);
         verify(model).addAttribute("products", productList);
     }
@@ -61,9 +66,9 @@ class ProductControllerTest {
     void testEditProductPage() {
         String productId = "123";
         Product product = new Product();
-        when(service.findById(productId)).thenReturn(product);
+        when(serviceGet.findById(productId)).thenReturn(product);
 
-        String viewName = controller.editProductPage(productId, model);
+        String viewName = controllerGet.editProductPage(productId, model);
         assertEquals("EditProduct", viewName);
         verify(model).addAttribute("product", product);
     }
@@ -71,9 +76,9 @@ class ProductControllerTest {
     @Test
     void testEditProductPageNotFound() {
         String productId = "123";
-        when(service.findById(productId)).thenReturn(null);
+        when(serviceGet.findById(productId)).thenReturn(null);
 
-        String viewName = controller.editProductPage(productId, model);
+        String viewName = controllerGet.editProductPage(productId, model);
         assertEquals("redirect:/product/list", viewName);
     }
 
@@ -81,16 +86,16 @@ class ProductControllerTest {
     void testEditProductPost() {
         String productId = "123";
         Product product = new Product();
-        String viewName = controller.editProductPost(productId, product);
+        String viewName = controllerPost.editProductPost(productId, product);
         assertEquals("redirect:/product/list", viewName);
-        verify(service).edit(productId, product);
+        verify(servicePost).edit(productId, product);
     }
 
     @Test
     void testDeleteProduct() {
         String productId = "123";
-        String viewName = controller.deleteProduct(productId);
+        String viewName = controllerPost.deleteProduct(productId);
         assertEquals("redirect:/product/list", viewName);
-        verify(service).delete(productId);
+        verify(servicePost).delete(productId);
     }
 }
