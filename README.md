@@ -101,6 +101,8 @@ Since it met every requirements, the current implementation has met the definiti
 
 1. **SOLID Principles I Applied**
 
+Manually, i only implemented 3 principles which are:
+
 - SRP (*Single Responsibility Principle*)
   - Removed the extension from ProductController to CarController
   since they both handle different items.
