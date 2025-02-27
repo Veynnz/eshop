@@ -14,17 +14,17 @@ public class CarControllerPost extends AbstractControllerPost<Car> {
     }
 
     @PostMapping("/createCar")
-    public String createCar(@ModelAttribute Car car) {
+    public String createCarPost(@ModelAttribute Car car) {
         return createPost(car);
     }
 
     @PostMapping("/editCar/{id}")
-    public String editCar(@PathVariable String id, @ModelAttribute Car car) {
+    public String editCarPost(@PathVariable String id, @ModelAttribute Car car) {
         return editPost(id, car);
     }
 
     @PostMapping("/deleteCar/{id}")
-    public String deleteCar(@PathVariable String id) {
+    public String deletePost(@PathVariable String id) {
         return delete(id);
     }
 }

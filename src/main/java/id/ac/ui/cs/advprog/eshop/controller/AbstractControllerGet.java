@@ -40,6 +40,9 @@ public abstract class AbstractControllerGet<T> {
 
     public String editPage(String id, Model model) {
         T item = itemService.findById(id);
+        if (item == null) {
+            return listView;
+        }
         model.addAttribute(itemAttribute, item);
         return editView;
     }

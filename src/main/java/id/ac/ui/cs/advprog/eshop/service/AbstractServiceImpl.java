@@ -38,7 +38,7 @@ public abstract class AbstractServiceImpl<T, R extends AbstractFullRepository<T>
     }
 
     @Override
-    public T update(String id, T item) {
+    public T edit(String id, T item) {
         return repository.update(id, item);
     }
 

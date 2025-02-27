@@ -12,9 +12,9 @@ public class CarControllerGet extends AbstractControllerGet<Car> {
 
     public CarControllerGet(itemServiceGet<Car> carService) {
         super(carService,
-                "createCar",
-                "carList",
-                "editCar",
+                "CreateCar",
+                "CarList",
+                "EditCar",
                 "car",
                 "cars");
     }

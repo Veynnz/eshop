@@ -20,7 +20,7 @@ public abstract class AbstractControllerPost<T> {
     }
 
     protected String editPost(String id, T item) {
-        itemService.update(id, item);
+        itemService.edit(id, item);
         return redirectList;
     }
 

@@ -1,6 +1,8 @@
 package id.ac.ui.cs.advprog.eshop.controller;
 
 import id.ac.ui.cs.advprog.eshop.model.Product;
+import id.ac.ui.cs.advprog.eshop.service.itemServiceGet;
+import id.ac.ui.cs.advprog.eshop.service.itemServicePost;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -17,9 +19,9 @@ import static org.mockito.Mockito.*;
 class ProductControllerTest {
 
     @Mock
-    private ProductService servicePost;
+    private itemServicePost<Product> servicePost;
     @Mock
-    private ReadOnlyProductService serviceGet;
+    private itemServiceGet<Product> serviceGet;
 
     @Mock
     private Model model;
@@ -45,8 +47,8 @@ class ProductControllerTest {
     @Test
     void testCreateProductPost() {
         Product product = new Product();
-        String viewName = controllerPost.createProductPost(product, model);
-        assertEquals("redirect:list", viewName);
+        String viewName = controllerPost.createProductPost(product);
+        assertEquals("redirect:/product/list", viewName);
         verify(servicePost).create(product);
     }
 
@@ -75,9 +77,8 @@ class ProductControllerTest {
     void testEditProductPageNotFound() {
         String productId = "123";
         when(serviceGet.findById(productId)).thenReturn(null);
-
         String viewName = controllerGet.editProductPage(productId, model);
-        assertEquals("redirect:/product/list", viewName);
+        assertEquals("ProductList", viewName);
     }
 
     @Test
@@ -94,6 +95,6 @@ class ProductControllerTest {
         String productId = "123";
         String viewName = controllerPost.delete(productId);
         assertEquals("redirect:/product/list", viewName);
-        verify(servicePost).deleteById(productId);
+        verify(servicePost).delete(productId);
     }
 }

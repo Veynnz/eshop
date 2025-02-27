@@ -15,17 +15,17 @@ public class ProductControllerPost extends AbstractControllerPost<Product> {
     }
 
     @PostMapping("/create")
-    public String create(@ModelAttribute Product product) {
+    public String createProductPost(@ModelAttribute Product product) {
         return createPost(product);
     }
 
     @PostMapping("/edit/{id}")
-    public String edit(@PathVariable String id, @ModelAttribute Product product) {
+    public String editProductPost(@PathVariable String id, @ModelAttribute Product product) {
         return editPost(id, product);
     }
 
     @PostMapping("/delete/{id}")
-    public String deleteById(@PathVariable String id) {
+    public String deletePost(@PathVariable String id) {
         return delete(id);
     }
 }

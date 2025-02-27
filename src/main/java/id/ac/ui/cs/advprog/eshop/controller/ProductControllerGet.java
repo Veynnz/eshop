@@ -12,25 +12,25 @@ public class ProductControllerGet extends AbstractControllerGet<Product> {
 
     public ProductControllerGet(itemServiceGet<Product> productService) {
         super(productService,
-                "createProduct",
-                "productList",
-                "editProduct",
+                "CreateProduct",
+                "ProductList",
+                "EditProduct",
                 "product",
                 "products");
     }
 
     @GetMapping("/create")
-    public String createCarPage(Model model) {
+    public String createProductPage(Model model) {
         return createPage(model);
     }
 
     @GetMapping("/list")
-    public String carListPage(Model model) {
+    public String productListPage(Model model) {
         return listPage(model);
     }
 
     @GetMapping("/edit/{id}")
-    public String editCarPage(@PathVariable String id, Model model) {
+    public String editProductPage(@PathVariable String id, Model model) {
         return editPage(id, model);
     }
 
