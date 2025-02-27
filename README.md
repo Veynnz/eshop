@@ -96,5 +96,37 @@ All of these are done automatically on push/pull request (except deployment that
 
 Since it met every requirements, the current implementation has met the definition of Continuous Integration and Continuous Deployment.
 
-## Reflection 3
+# WEEK 3
+## Reflection 4
 
+1. **SOLID Principles I Applied**
+
+- SRP (*Single Responsibility Principle*)
+  - Removed the extension from ProductController to CarController
+  since they both handle different items.
+  - Separates CarController onto a different file.
+- OCP (*Open-Closed Principle*)
+  - Adds interfaces for repository, to allow extension.
+  - Implements constructor injection for most of the clases.
+  - Creates abstract classes for model, controller, repository, and service.
+- ISP (*Interface Segregation Principle*)
+  - Separates the interface for post(create, update, delete) and get(findById, findAll) methods. 
+  Including the implementations that depends on them.
+
+2. **Advantages of SOLID**
+
+- Each class or function has a single responsibility, making it easier to modify without affecting other parts of the system.
+  - For example: Debugging the controller (that i had many trouble with) was much easier, since the controllers was split between Car, Product, Post, and Get.
+- With principles like `Open/Closed`, components can be reused in different parts of the project easily.
+  - For example: If i were to create another service with similar implementation, i just need to inherit from the abstract class without remaking the same thing.
+- New features can be added without modifying existing code.
+  - For example: If i want to give Product another feature, like adding a description, i only need to implement on the Product side, wihtout affecting the Car side at all.
+
+3. **Disadvantages of not Applying SOLID**
+
+- The codes are tightly coupled together, making it hard to modify.
+  - For example: If CarController were to ProductController like the original, then changing the ProductController would affect CarController as well, since it inherits the methods and attributes.
+- Modifying codes become time consuming.
+  - For example: If a class were to get a new feature, there is a possibility that the whole class needs to change, instead of just adding a new module.
+- If an interface forces a class to implement unnecessary methods, it creates confusion and unnecessary dependencies.
+  - For example: If there were an implementation of get methods (like routing etc), forcing it to have post methods (like create, update, delete) would create confusion and unnecessary.
