@@ -1,48 +1,41 @@
 package id.ac.ui.cs.advprog.eshop.controller;
 
 import id.ac.ui.cs.advprog.eshop.model.Product;
-
-import id.ac.ui.cs.advprog.eshop.service.ReadOnlyProductService;
-import org.springframework.beans.factory.annotation.Autowired;
+import id.ac.ui.cs.advprog.eshop.service.itemServiceGet;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @Controller
 @RequestMapping("/product")
-public class ProductControllerGet {
+public class ProductControllerGet extends AbstractControllerGet<Product> {
 
-    private final ReadOnlyProductService service;
-    private static final String PRODUCT_LIST_URL = "redirect:/product/list";
-
-    @Autowired
-    public ProductControllerGet (ReadOnlyProductService service) { // Constructor injection
-        this.service = service;
+    public ProductControllerGet(itemServiceGet<Product> productService) {
+        super(productService,
+                "createProduct",
+                "productList",
+                "editProduct",
+                "product",
+                "products");
     }
 
     @GetMapping("/create")
-    public String createProductPage(Model model) {
-        Product product = new Product();
-        model.addAttribute("product", product);
-        return "CreateProduct";
+    public String createCarPage(Model model) {
+        return createPage(model);
     }
 
     @GetMapping("/list")
-    public String productListPage(Model model) {
-        List<Product> allProducts = service.findAll();
-        model.addAttribute("products", allProducts);
-        return "ProductList";
+    public String carListPage(Model model) {
+        return listPage(model);
     }
 
     @GetMapping("/edit/{id}")
-    public String editProductPage(@PathVariable("id") String id, Model model) {
-        Product product = service.findById(id);
-        if (product == null) {
-            return PRODUCT_LIST_URL; // Redirect if not found
-        }
-        model.addAttribute("product", product);
-        return "EditProduct";
+    public String editCarPage(@PathVariable String id, Model model) {
+        return editPage(id, model);
+    }
+
+    @Override
+    protected Product createNewInstance() {
+        return new Product();
     }
 }

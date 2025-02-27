@@ -1,8 +1,6 @@
 package id.ac.ui.cs.advprog.eshop.controller;
 
 import id.ac.ui.cs.advprog.eshop.model.Product;
-import id.ac.ui.cs.advprog.eshop.service.ProductService;
-import id.ac.ui.cs.advprog.eshop.service.ReadOnlyProductService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -94,8 +92,8 @@ class ProductControllerTest {
     @Test
     void testDeleteProduct() {
         String productId = "123";
-        String viewName = controllerPost.deleteProduct(productId);
+        String viewName = controllerPost.delete(productId);
         assertEquals("redirect:/product/list", viewName);
-        verify(servicePost).delete(productId);
+        verify(servicePost).deleteById(productId);
     }
 }

@@ -7,6 +7,9 @@ WEEK 1
 WEEK 2
 - [Reflection 3](#Reflection-3)
 
+WEEK 3
+- [Reflection 4](#Reflection-4)
+
 # WEEK 1
 ## Reflection 1
 
@@ -92,3 +95,6 @@ Currently my program has implemented:
 All of these are done automatically on push/pull request (except deployment that only triggers by a push in main branch).
 
 Since it met every requirements, the current implementation has met the definition of Continuous Integration and Continuous Deployment.
+
+## Reflection 3
+

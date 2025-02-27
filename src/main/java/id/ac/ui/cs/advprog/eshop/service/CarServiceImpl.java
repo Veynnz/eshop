@@ -4,42 +4,11 @@ import id.ac.ui.cs.advprog.eshop.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
-public class CarServiceImpl implements CarService, ReadOnlyCarService {
-
-    private final CarRepository carRepository;
+public class CarServiceImpl extends AbstractServiceImpl<Car, CarRepository> {
 
     @Autowired
-    public CarServiceImpl(CarRepository carRepository) {
-        this.carRepository = carRepository;
-    }
-
-    @Override
-    public Car create(Car car) {
-        carRepository.create(car);
-        return car;
-    }
-
-    @Override
-    public List<Car> findAll() {
-        return carRepository.findAll();
-    }
-
-    @Override
-    public Car findById(String carId) {
-        Car car = carRepository.findById(carId);
-        return car;
-    }
-
-    @Override
-    public void update(String carId, Car car) {
-        carRepository.update(carId, car);
-    }
-
-    @Override
-    public void deleteCarById(String carId) {
-        carRepository.delete(carId);
+    public CarServiceImpl(CarRepository repository) {
+        super(repository);
     }
 }

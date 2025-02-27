@@ -25,8 +25,11 @@
             <td th:text="${product.quantity}"></td>
             <td>
                 <a th:href="@{/product/edit/{id}(id=${product.getId()})}" class="btn btn-warning">Edit</a>
-                <a th:href="@{/product/delete/{id}(id=${product.getId()})}" class="btn btn-danger"
-                   onclick="return confirm('Are you sure?');">Delete</a>
+                <form th:action="@{/product/delete/{id}(id=${product.getId()})}" method="post"
+                      style="display:inline;"
+                      onsubmit="return confirm('Are you sure?');">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
             </td>
         </tr>
         </tbody>
