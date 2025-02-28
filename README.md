@@ -99,6 +99,14 @@ Since it met every requirements, the current implementation has met the definiti
 # WEEK 3
 ## Reflection 4
 
+### SOLID PRINCIPLES
+
+- SRP: Each class should be responsible for a single functionality. If a class has multiple responsibilities, changes in one part of the code may affect unrelated parts, leading to higher complexity.
+- OCP: You should be able to add new functionality without modifying existing code, promoting flexibility and reducing the risk of introducing bugs.
+- LSP: If a class B is a subclass of A, then A should be replaceable with B without affecting functionality.
+- ISP: Large interfaces should be split into smaller, more specific ones so that implementing classes don’t need to implement unnecessary methods.
+- DIP: Instead of directly depending on concrete implementations, depend on abstractions (like interfaces).
+
 1. **SOLID Principles I Applied**
 
 Manually, i only implemented 3 principles which are:
@@ -106,7 +114,7 @@ Manually, i only implemented 3 principles which are:
 - SRP (*Single Responsibility Principle*)
   - Removed the extension from ProductController to CarController
   since they both handle different items.
-  - Separates CarController onto a different file.
+  - Separates CarC ontroller onto a different file.
 - OCP (*Open-Closed Principle*)
   - Adds interfaces for repository, to allow extension.
   - Implements constructor injection for most of the clases.
