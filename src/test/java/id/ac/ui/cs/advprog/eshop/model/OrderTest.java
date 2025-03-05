@@ -45,8 +45,8 @@ class OrderTest {
                 this.products, 1708560000L, "Safira Sudrajat");
         assertSame(this.products, order.getProducts());
         assertEquals(2, order.getProducts().size());
-        assertEquals("Sampo Cap Bambang", order.getProducts().get(0).getProductName());
-        assertEquals("Sabun Cap Useg", order.getProducts().get(1).getProductName());
+        assertEquals("Sampo Cap Bambang", order.getProducts().get(0).getName());
+        assertEquals("Sabun Cap Useg", order.getProducts().get(1).getName());
         assertEquals("13652556-012a-4c07-b546-5deb1396479b", order.getId());
         assertEquals(1708560000L, order.getOrderTime());
         assertEquals("Safira Sudrajat", order.getAuthor());
