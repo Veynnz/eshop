@@ -46,9 +46,6 @@ class PaymentRepositoryTest {
         paymentData2.put("voucherCode", "ESHOP1234ABC5679");
         Payment payment2 = new Payment("fedcba98-7654-3210-ffed-cba987654321", "VOUCHER", paymentData2);
         payments.add(payment2);
-
-        order = new Order("11223344-5566-7788-99aa-bbccddeeff00",
-                null, 1709000000L, "John Doe");
     }
 
     @Test
