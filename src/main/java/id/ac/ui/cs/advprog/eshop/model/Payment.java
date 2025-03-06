@@ -8,66 +8,53 @@ import java.util.Map;
 
 @Getter
 public class Payment {
-    String id;
-    String method;
-    Map<String, String> paymentData;
-    String status;
+    private String id;
+    private String method;
+    private Map<String, String> paymentData;
+    private String status;
 
     public Payment(String id, String method, Map<String, String> paymentData) {
+        if (method == null || method.trim().isEmpty() || !PaymentMethod.contains(method)) {
+            throw new IllegalArgumentException("Payment method cannot be null or empty.");
+        }
+        if (paymentData == null) {
+            throw new IllegalArgumentException("Payment data cannot be null.");
+        }
+
         this.id = id;
         this.method = method;
         this.paymentData = paymentData;
-        this.validateData();
 
-        if (method == null || method.trim().isEmpty() || !method.equals("VOUCHER")) {
-            throw new IllegalArgumentException();
-        }
-        if (paymentData == null) {
-            throw new IllegalArgumentException();
-        }
+        validateData();
     }
 
     public void setStatus(String status) {
         if (PaymentStatus.contains(status)) {
             this.status = status;
         } else {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Invalid payment status.");
         }
     }
 
     private void validateData() {
         boolean isValid = false;
-        switch (PaymentMethod.valueOf(method)) {
-            case PaymentMethod.VOUCHER:
-                isValid = validateVoucherMethod();
-                break;
-            case PaymentMethod.BANK_TRANSFER:
-                isValid = validateBankMethod();
-                break;
-            default:
-                break;
+
+        if (method.equals(PaymentMethod.VOUCHER.getValue())) {
+            isValid = validateVoucherMethod();
+        } else if (method.equals(PaymentMethod.BANK_TRANSFER.getValue())) {
+            isValid = validateBankMethod();
         }
-        if (isValid) {
-            status = PaymentStatus.SUCCESS.getValue();
-        } else {
-            status = PaymentStatus.REJECTED.getValue();
-        }
+
+        this.status = isValid ? PaymentStatus.SUCCESS.getValue() : PaymentStatus.REJECTED.getValue();
     }
 
     private boolean validateVoucherMethod() {
         String voucherCode = paymentData.get("voucherCode");
-        if (voucherCode == null) {
-            return false;
-        }
-        return checkVoucherCode(voucherCode);
+        return voucherCode != null && checkVoucherCode(voucherCode);
     }
 
     private boolean checkVoucherCode(String voucherCode) {
-        if (voucherCode.length() != 16) {
-            return false;
-        }
-
-        if (!voucherCode.startsWith("ESHOP")) {
+        if (voucherCode.length() != 16 || !voucherCode.startsWith("ESHOP")) {
             return false;
         }
 
@@ -85,9 +72,6 @@ public class Payment {
     private boolean validateBankMethod() {
         String bankName = paymentData.get("bankName");
         String referenceCode = paymentData.get("referenceCode");
-
-        boolean isBankValid = bankName != null && !bankName.isEmpty();
-        boolean isReferenceCodeValid = referenceCode != null && !referenceCode.isEmpty();
-        return isBankValid && isReferenceCodeValid;
+        return bankName != null && !bankName.isEmpty() && referenceCode != null && !referenceCode.isEmpty();
     }
 }
