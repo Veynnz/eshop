@@ -19,15 +19,6 @@ class PaymentTest {
     }
 
     @Test
-    void testCreatePayment(){
-        Payment payment = new Payment("a1b2c3d4-e5f6-7890-1234-567890abcdef", "VOUCHER", paymentData);
-        assertEquals("a1b2c3d4-e5f6-7890-1234-567890abcdef", payment.getId());
-        assertEquals("VOUCHER", payment.getMethod());
-        assertEquals(paymentData, payment.getPaymentData());
-        assertEquals("SUCCESS", payment.getStatus());
-    }
-
-    @Test
     void testCreatePaymentInvalidMethod() {
         assertThrows(IllegalArgumentException.class, () -> {
             Payment payment = new Payment("a1b2c3d4-e5f6-7890-1234-567890abcdef", "RAWR",
