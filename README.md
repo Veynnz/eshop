@@ -10,6 +10,9 @@ WEEK 2
 WEEK 3
 - [Reflection 4](#Reflection-4)
 
+WEEK 4
+- [Reflection 5](#Reflection-5)
+
 # WEEK 1
 ## Reflection 1
 
@@ -140,3 +143,21 @@ Manually, i only implemented 3 principles which are:
   - For example: If a class were to get a new feature, there is a possibility that the whole class needs to change, instead of just adding a new module.
 - If an interface forces a class to implement unnecessary methods, it creates confusion and unnecessary dependencies.
   - For example: If there were an implementation of get methods (like routing etc), forcing it to have post methods (like create, update, delete) would create confusion and unnecessary.
+
+# WEEK 4
+## Reflection 5
+
+### Reflection on the Usefulness of the TDD Flow
+
+- **Generally beneficial**: The TDD flow was helpful in guiding development and ensuring requirements were met. It provided a structured approach, allowing for iterative development and immediate verification of functionality.
+- **Feedback speed**: Running all tests sometimes felt slow, indicating a need to optimize test execution by running only relevant tests during development. This would allow for quicker iterations and more focused debugging.
+- **IntelliJ IDEA's capabilities**: Utilize IntelliJ IDEA's features to run specific tests or test classes for faster feedback. This includes leveraging features like running tests from the editor and creating test configurations for specific scenarios.
+- **Scalability**: While waiting time was minimal in this tutorial, adopting a strategy of running focused test subsets will be crucial as the codebase grows. As the number of tests increases, the overall execution time will also increase, making it essential to streamline the testing process.
+
+### FIRST Principles
+
+- **Fast**: Tests were generally fast due to Mockito, but monitoring and optimization will be necessary as the codebase expands and more tests involve database operations.
+- **Isolated/Independent**: While tests aimed for isolation, some dependencies on previous tests were observed, highlighting the need to ensure complete independence for each test.
+- **Repeatable**: Mockito ensured repeatability, but consistent mock configuration is crucial to avoid unexpected variations in results.
+- **Self-Validating**: Tests were generally self-validating, but adding more descriptive failure messages would enhance clarity and debugging.
+- **Thorough/Timely**: Tests adhered to this principle by following the TDD cycle, with tests written before the code.
